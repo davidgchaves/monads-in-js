@@ -73,3 +73,7 @@ sineOfCubeLogWithTuple([3, ""]);  // -> [0.956375928404503, "cubeLog was called.
 // PROBLEM with the 'bind' approach:
 //   the functions take (Number, String) => Example: [3, ""]
 
+// Another Writer Monad example: unit
+// unit :: Number -> (Number, String)
+var unit = function(x) { return [x, ""]; };
+
