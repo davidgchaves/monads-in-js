@@ -66,3 +66,10 @@ var bind = function(f) {
   };
 };
 
+// use bind to convert sineLog and cubeLog to use 'compose'
+var sineOfCubeLogWithTuple = compose(bind(sineLog), bind(cubeLog));
+sineOfCubeLogWithTuple([3, ""]);  // -> [0.956375928404503, "cubeLog was called.sineLog was called."
+
+// PROBLEM with the 'bind' approach:
+//   the functions take (Number, String) => Example: [3, ""]
+
