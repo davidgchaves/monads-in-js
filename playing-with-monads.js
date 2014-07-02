@@ -11,3 +11,12 @@ var cube = function(x) { return x*x*x; }
 
 sine(cube(2));
 
+
+// 03 - compose, a function to encapsulate function composition
+
+var compose = function(f, g) {
+  return function(x) { return f(g(x)); };
+};
+
+var sineOfCube = compose(sine, cube);
+sineOfCube(3);  // -> 0.956375928404503
