@@ -30,3 +30,22 @@ var sineLog = function(x) { return [Math.sin(x), "sineLog was called."]; };
 // cubeLog :: Number -> (Number, String)
 var cubeLog = function(x) { return [x*x*x, "cubeLog was called."]; };
 
+
+// 05 - custom function to compose sineLog and cubeLog
+
+var composeLoggable = function(f, g) {
+  return function(x) {
+    var gx = g(x),    // cubeLog(3)  -> [27, "cubeLog was called."]
+        y  = gx[0],   //             -> 27
+        s  = gx[1],   //             -> "cubeLog was called."
+        fy = f(y),    // sineLog(27) -> [0.956, "sineLog was called."]
+        z  = fy[0],   //             -> 0.956
+        t  = fy[1];   //             -> "sineLog was called."
+
+    return [z, s+t];
+  };
+};
+
+var sineOfCubeLog = composeLoggable(sineLog, cubeLog);
+sineOfCubeLog(3);  // -> [0.956375928404503, "cubeLog was called.sineLog was called."
+
