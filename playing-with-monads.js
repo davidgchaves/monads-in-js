@@ -77,3 +77,13 @@ sineOfCubeLogWithTuple([3, ""]);  // -> [0.956375928404503, "cubeLog was called.
 // unit :: Number -> (Number, String)
 var unit = function(x) { return [x, ""]; };
 
+// use bind to convert sineLog and cubeLog
+//     unit to convert values to acceptable types
+//     compose to... well, compose
+
+// option 1
+sineOfCubeLogWithTuple(unit(3));  // -> [0.956375928404503, "cubeLog was called.sineLog was called."
+
+// option 2
+compose(sineOfCubeLogWithTuple, unit)(3);  // -> [0.956375928404503, "cubeLog was called.sineLog was called."
+
