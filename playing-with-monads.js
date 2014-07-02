@@ -49,3 +49,20 @@ var composeLoggable = function(f, g) {
 var sineOfCubeLog = composeLoggable(sineLog, cubeLog);
 sineOfCubeLog(3);  // -> [0.956375928404503, "cubeLog was called.sineLog was called."
 
+
+// 06 - avoid custom 'composeLoggable' function -> use 'compose'
+
+// A Writer Monad example: bind
+// bind :: (Number -> (Number,String)) -> ((Number,String) -> (Number,String))
+var bind = function(f) {
+  return function(tuple) {
+    var x  = tuple[0],
+        s  = tuple[1],
+        fx = f(x),
+        y  = fx[0],
+        t  = fx[1];
+
+    return [y, s+t];
+  };
+};
+
